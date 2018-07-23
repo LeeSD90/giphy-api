@@ -8,10 +8,12 @@
   <img src="#">
   <input type="text" placeholder="Dogs">
   <button onclick="fetchImage(document.querySelector('input').value)">Click me</button>
+  <div></div>
   <script>
   	document.onload = fetchImage();
 
   	function fetchImage(string) {
+  		document.querySelector('div').innerHTML = "";
 	  	const img = document.querySelector('img');
 	  	fetch('https://api.giphy.com/v1/gifs/translate?api_key=aQcH0JB4TYlU2DkkiaSpHPhjjIHr0GVr&s=' + string, {mode: 'cors'})
 	  		.then(function(response) {
@@ -19,7 +21,11 @@
 	  		})
 	  		.then(function(response) {
 	  			img.src = response.data.images.original.url;
-	  		});
+	  		})
+	  		.catch(function(e){
+	  			console.log(e);
+	  			document.querySelector('div').innerHTML = "Oops, error!";
+	  		})
   	}
   </script>
 </body>
