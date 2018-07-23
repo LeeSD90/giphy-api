@@ -6,13 +6,14 @@
 </head>
 <body>
   <img src="#">
-  <button onclick="fetchImage()">Click me</button>
+  <input type="text" placeholder="Dogs">
+  <button onclick="fetchImage(document.querySelector('input').value)">Click me</button>
   <script>
   	document.onload = fetchImage();
-  	
-  	function fetchImage() {
+
+  	function fetchImage(string) {
 	  	const img = document.querySelector('img');
-	  	fetch('https://api.giphy.com/v1/gifs/translate?api_key=aQcH0JB4TYlU2DkkiaSpHPhjjIHr0GVr&s=dog', {mode: 'cors'})
+	  	fetch('https://api.giphy.com/v1/gifs/translate?api_key=aQcH0JB4TYlU2DkkiaSpHPhjjIHr0GVr&s=' + string, {mode: 'cors'})
 	  		.then(function(response) {
 	  			return response.json();
 	  		})
